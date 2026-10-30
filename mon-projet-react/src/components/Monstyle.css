@@ -1,0 +1,323 @@
+/* Mise en page globale avec CSS Grid
+   3 colonnes : gauche | centre | droite
+   3 lignes : banner | corps | footer */
+.layout {
+  display: grid;
+  grid-template-columns: 220px 1fr 240px;
+  grid-template-rows: auto 1fr auto;
+  grid-template-areas:
+    "banner  banner  banner"
+    "sidebar content right"
+    "footer  footer  footer";
+  min-height: 100vh;
+  gap: 16px;
+  background-color: #f7f9fa;
+}
+
+/* Quand on est sur la page /panier : 2 colonnes sans doublon à droite */
+.layout.sans-panier-droite {
+  grid-template-columns: 220px 1fr;
+  grid-template-areas:
+    "banner  banner"
+    "sidebar content"
+    "footer  footer";
+}
+
+/* Adaptation mobile : tout passe en une seule colonne */
+@media (max-width: 700px) {
+  .layout,
+  .layout.sans-panier-droite {
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      "banner"
+      "sidebar"
+      "content"
+      "footer";
+  }
+}
+
+/* 1. Header / Banner */
+.banner {
+  grid-area: banner;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 24px;
+  background: #1f3a5f;
+  color: #fff;
+}
+
+.banner h1 {
+  margin: 0;
+  font-size: 1.6rem;
+}
+
+/* Menu de navigation */
+.menu {
+  display: flex;
+  align-items: center;
+}
+
+.menu a {
+  color: #fff;
+  margin-left: 16px;
+  text-decoration: none;
+  font-weight: 500;
+  transition: opacity 0.2s ease;
+}
+
+.menu a:hover {
+  text-decoration: underline;
+  opacity: 0.9;
+}
+
+.menu a.active {
+  background: rgba(255, 255, 255, 0.2);
+  padding: 6px 12px;
+  border-radius: 6px;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+/* 2. Colonne de gauche (Sidebar) */
+.sidebar {
+  grid-area: sidebar;
+  background: #ffffff;
+  padding: 16px;
+  margin-left: 16px;
+  border-radius: 8px;
+  border: 1px solid #e2e8f0;
+}
+
+.sidebar h2 {
+  margin-top: 0;
+  font-size: 1.2rem;
+  color: #1f3a5f;
+}
+
+.sidebar ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.sidebar li {
+  margin-bottom: 10px;
+}
+
+.sidebar a {
+  color: #334155;
+  text-decoration: none;
+}
+
+.sidebar a:hover {
+  color: #1f3a5f;
+  text-decoration: underline;
+}
+
+/* 3. Contenu central (Content) */
+.content {
+  grid-area: content;
+  padding: 0 8px;
+}
+
+.content h2 {
+  margin-top: 0;
+  color: #1f3a5f;
+}
+
+.carte {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  padding: 16px;
+  margin-bottom: 16px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+.carte h3 {
+  margin: 0 0 8px 0;
+  color: #0f172a;
+}
+
+.carte p {
+  margin: 0;
+  font-weight: bold;
+  color: #2563eb;
+}
+
+/* 4. Colonne de droite (Right Column / Panier) */
+.right-column {
+  grid-area: right;
+  background: #ffffff;
+  padding: 16px;
+  margin-right: 16px;
+  border-radius: 8px;
+  border: 1px solid #e2e8f0;
+}
+
+.right-column h2 {
+  margin-top: 0;
+  font-size: 1.2rem;
+  color: #1f3a5f;
+}
+
+.right-column p {
+  margin: 8px 0;
+  color: #475569;
+}
+
+/* 5. Pied de page (Footer) */
+.footer {
+  grid-area: footer;
+  background: #1f3a5f;
+  color: #ffffff;
+  text-align: center;
+  padding: 16px;
+}
+
+.footer p {
+  margin: 0;
+  font-size: 0.95rem;
+}
+
+/* Ajustements marges en mobile */
+@media (max-width: 700px) {
+  .sidebar {
+    margin-left: 16px;
+    margin-right: 16px;
+  }
+  .content {
+    padding: 0 16px;
+  }
+  .right-column {
+    margin-left: 16px;
+    margin-right: 16px;
+  }
+}
+
+/* 6. Styles du Compteur & Authentification */
+.compteur-section {
+  border-left: 4px solid #2563eb;
+}
+
+.compteur-display {
+  font-size: 1.1rem;
+  margin: 10px 0;
+  color: #334155;
+}
+
+.valeur-chiffre {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #2563eb;
+  padding: 2px 8px;
+  background-color: #eff6ff;
+  border-radius: 4px;
+}
+
+.compteur-boutons {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-top: 12px;
+}
+
+.counter {
+  background-color: #2563eb;
+  color: #ffffff;
+  border: none;
+  padding: 8px 16px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.2s, transform 0.1s;
+}
+
+.counter:hover {
+  background-color: #1d4ed8;
+  transform: translateY(-1px);
+}
+
+.counter:active {
+  transform: translateY(0);
+}
+
+.counter.reset-btn {
+  background-color: #64748b;
+}
+
+.counter.reset-btn:hover {
+  background-color: #475569;
+}
+
+/* Onglets de bascule Auth / Inscription */
+.auth-tabs {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 16px;
+}
+
+.tab-btn {
+  padding: 8px 16px;
+  background: #e2e8f0;
+  border: none;
+  border-radius: 6px;
+  font-weight: 600;
+  font-size: 0.95rem;
+  cursor: pointer;
+  color: #334155;
+  transition: all 0.2s ease;
+}
+
+.tab-btn:hover {
+  background: #cbd5e1;
+}
+
+.tab-btn.active {
+  background: #2563eb;
+  color: #ffffff;
+}
+
+/* Formulaires Auth & Inscription */
+.auth-form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 10px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.form-group label {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #334155;
+}
+
+.form-group input {
+  padding: 8px 12px;
+  border: 1px solid #cbd5e1;
+  border-radius: 6px;
+  font-size: 0.95rem;
+  outline: none;
+}
+
+.form-group input:focus {
+  border-color: #2563eb;
+  box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.2);
+}
+
+.auth-alert {
+  background-color: #ecfdf5;
+  border: 1px solid #a7f3d0;
+  color: #065f46;
+  padding: 12px;
+  border-radius: 6px;
+  margin-top: 8px;
+}

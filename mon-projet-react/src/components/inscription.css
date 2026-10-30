@@ -1,0 +1,20 @@
+* {
+    margin: 5px;
+    padding: 5px;
+
+    button {
+        margin: 5px;
+        padding: 5px;
+        color: white;
+        background-color: #00aaff;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+
+
+
+    }
+
+
+
+}

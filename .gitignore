@@ -1,0 +1,13 @@
+# Dependencies
+node_modules/
+*/node_modules/
+
+# Production builds
+dist/
+*/dist/
+
+# Logs & temp
+*.log
+npm-debug.log*
+.sixth/
+.vscode/
